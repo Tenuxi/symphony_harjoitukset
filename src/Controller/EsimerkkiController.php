@@ -49,6 +49,24 @@ class EsimerkkiController{
 
     }
 
+    public function lihapiirakka(){
+        $lompakkonrahat = rand(1, 10);
+        $piirakka = 2.5;
+
+        echo ('Lomapakossa on rahaa: ' . $lompakkonrahat . '<br>' . 'Piirakka maksaa: ' . $piirakka . '<br>');
+
+        if($lompakkonrahat >= $piirakka){
+            $lompakkonrahat -= $piirakka;
+            return new Response ("Lompakossa on oston jälkeen rahaa: " . $lompakkonrahat);
+            echo "rahaa oli ostaa lihapiirakka";
+        }else{
+            return new Response ("Taidat alkaa paastoamaan.");
+        }
+
+    }
+
+    
+
 }
 
 

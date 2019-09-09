@@ -21,3 +21,7 @@ heitaNoppaa:
 naytaJSON:
   path: /esimerkki/esim5
   controller: App\Controller\EsimerkkiController::naytaJSON
+
+lihapiirakka:
+  path: /esimerkki/esim6
+  controller: App\Controller\EsimerkkiController::lihapiirakka
