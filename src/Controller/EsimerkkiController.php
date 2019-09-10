@@ -65,6 +65,55 @@ class EsimerkkiController{
 
     }
 
+
+    /**
+     * @Route(esimerkki/"esim7")
+     */
+    public function laskePakkaspaivat(){
+        //muuttujat
+        $summa = 0;
+        $pakkaspaivat = 0;
+        $tekija = "Joonas Aaltonen";
+        $mittausviikko = 30;
+        $keskiarvo1 = 0;
+        $keskiarvo2 = 0;
+
+
+        //lämpötila taulukko
+        $pakkasasteet = [
+            'ma' => 3,
+            'ti' => -1,
+            'ke' => -10,
+            'to' => 1,
+            'pe' => 0,
+            'la' => 7,
+            'su' => -3,
+        ];
+
+        //lasketaan pakkaspäivien summa
+        foreach ($pakkasasteet as $pakkaspaivat) {
+            if ($pakkasaste < 0) {
+                $summa += $pakkasaste;
+                $pakkaspaivat += 1;
+            }
+        }
+
+        //lasketaan pakkaspäivien keskiarvo
+        $keskiarvo1 = number_format(($summa / $pakkaspaivat), 1);
+
+        //lasketaan koko viikon keskilämpötila
+        $keskiarvo2 = number_format(array_sum($pakkasasteet) / count($pakkasasteet), 1);
+
+        //kutsutaan näkymää ja lähetetään sille dataa siltävät muuttujat
+        return $this->render('esimerkit/pakkasasteet.html.twig', [
+            'pakkasasteet' => $pakkasasteet,
+            'keskiarvo1' => $keskiarvo1,
+            'keskiarvo2' => $keskiarvo2,
+            'viikko' => $mittausviikko,
+            'tekija' => $tekija
+        ]);
+
+    }
     
 
 }

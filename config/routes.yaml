@@ -25,3 +25,4 @@ naytaJSON:
 lihapiirakka:
   path: /esimerkki/esim6
   controller: App\Controller\EsimerkkiController::lihapiirakka
+
