@@ -2,27 +2,30 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-laskePalkka:
-  path: /esimerkki/esim1
-  controller: App\Controller\EsimerkkiController::laskePalkka
+#laskePalkka:
+#  path: /esimerkki/esim1
+#  controller: App\Controller\EsimerkkiController::laskePalkka
 
-tarkistaKarkausvuosi:
-  path: /esimerkki/esim2
-  controller: App\Controller\EsimerkkiController::tarkistaKarkausvuosi
+#tarkistaKarkausvuosi:
+#  path: /esimerkki/esim2
+#  controller: App\Controller\EsimerkkiController::tarkistaKarkausvuosi
 
-laskePH:
-  path: /esimerkki/esim3
-  controller: App\Controller\EsimerkkiController::laskePH
+#laskePH:
+#  path: /esimerkki/esim3
+#  controller: App\Controller\EsimerkkiController::laskePH
 
-heitaNoppaa:
-  path: /esimerkki/esim4
-  controller: App\Controller\EsimerkkiController::heitaNoppaa
+#heitaNoppaa:
+#  path: /esimerkki/esim4
+#  controller: App\Controller\EsimerkkiController::heitaNoppaa
 
-naytaJSON:
-  path: /esimerkki/esim5
-  controller: App\Controller\EsimerkkiController::naytaJSON
+#naytaJSON:
+#  path: /esimerkki/esim5
+#  controller: App\Controller\EsimerkkiController::naytaJSON
 
-lihapiirakka:
-  path: /esimerkki/esim6
-  controller: App\Controller\EsimerkkiController::lihapiirakka
+#lihapiirakka:
+#  path: /esimerkki/esim6
+#  controller: App\Controller\EsimerkkiController::lihapiirakka
 
+#pakkasasteet:
+#  path: /esimerkki/esim7
+#  controller: App\Controller\EsimerkkiController::laskePakkaspaivat
