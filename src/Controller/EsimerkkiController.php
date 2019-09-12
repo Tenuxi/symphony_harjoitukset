@@ -59,7 +59,12 @@ class EsimerkkiController extends AbstractController{
         $x = 2.13*pow(10,-5);
         $ph = -log10($x);
 
-        return new Response('<h3>kun vesiliuoksen vetyionikonsenraatio on 2.13 * 10(-5)mol/l sen pH on: ' . number_format($ph,1) );
+        $laskettu = number_format($ph,1);
+        //return new Response('<h3>kun vesiliuoksen vetyionikonsenraatio on 2.13 * 10(-5)mol/l sen pH on: ' . number_format($ph,1) );
+        return $this->render('esimerkit/laskeph.html.twig',[
+            'laskettu' => $laskettu
+        ]);
+
     }
 
 
@@ -69,7 +74,10 @@ class EsimerkkiController extends AbstractController{
     public function heitaNoppaa(){
         $noppa = rand(1, 6);
 
-        return new Response('Nopan silmä luku on: ' . $noppa);
+        //return new Response('Nopan silmä luku on: ' . $noppa);
+        return $this->render('esimerkit/heitanoppaa.html.twig',[
+            'noppa' => $noppa
+        ]);
     }
 
 
@@ -83,7 +91,12 @@ class EsimerkkiController extends AbstractController{
             'Sukunimi' => 'Kekkonen',
         ];
         //response olio näyttää tuloksen
-        return new JsonResponse($nimet);
+       // return new JsonResponse($nimet);
+        return $this->render('esimerkit/naytajson.html.twig',[
+            'etunimi' => $nimet['Etunimi'],
+            'sukunimi' => $nimet['Sukunimi'],
+            'json' => new JsonResponse($nimet)
+        ]);
 
     }
 
@@ -95,14 +108,24 @@ class EsimerkkiController extends AbstractController{
         $lompakkonrahat = rand(1, 10);
         $piirakka = 2.5;
 
-        echo ('Lomapakossa on rahaa: ' . $lompakkonrahat . '<br>' . 'Piirakka maksaa: ' . $piirakka . '<br>');
+        $teksti1 = "Lompakossa on oston jälkeen rahaa: ";
+        $teksti2 = "Taidat alkaa paastoamaan.";
+        $teksti3 = "Rahaa oli ostaa lihis.";
+
+
+        //echo ('Lomapakossa on rahaa: ' . $lompakkonrahat . '<br>' . 'Piirakka maksaa: ' . $piirakka . '<br>');
 
         if($lompakkonrahat >= $piirakka){
             $lompakkonrahat -= $piirakka;
-            return new Response ("Lompakossa on oston jälkeen rahaa: " . $lompakkonrahat);
-            echo "rahaa oli ostaa lihapiirakka";
+            //return new Response ("Lompakossa on oston jälkeen rahaa: " . $lompakkonrahat);
+            return $this->render('esimerkit/lihapiirakka.html.twig', [
+                'lompakossarahaa' => $lompakkonrahat
+            ]);
         }else{
-            return new Response ("Taidat alkaa paastoamaan.");
+            //return new Response ("Taidat alkaa paastoamaan.");
+            return $this->render('esimerkit/lihapiirakka2.html.twig',[
+
+            ]);
         }
 
     }
@@ -155,8 +178,86 @@ class EsimerkkiController extends AbstractController{
         ]);
     
 
+        
+
+
+    }
+
+    /**
+    * @Route("/esimerkit/uutiset/{slug}")
+     */
+    public function nayta($slug){
+        $kommentit = [
+            'Muropaketin arvostelun mukaan Control on viiden tähden täysosuma!',
+            'Apple Arcade toimii iPhoneilla ja iPadeillä sekä Macilla ja Apple TV:llä!',
+            'PlayStation Blog on jälleen listannut viikon suurimmat PS4-julkaisut!'
+    ];
+        return $this->render('esimerkit/nayta.html.twig',[
+            'otsikko' => $slug,
+            'kommentit' => $kommentit
+        ]);
     }
     
+
+    /**
+     * @Route("esimerkki/esim8/{slug}")
+     */
+    //Kontrollerit laitetaan tänne
+    public function laskePalkka2($slug){
+        $bruttopalkka = $nettopalkka * 0.7;
+        
+        return $this->render('esimerkit/laskepalkka2.html.twig', [
+            'nettopalkka' => $nettopalkka,
+            'bruttopalkka' => $slug
+        ]);
+    }
+
+    /**
+     * @Route("esimerkki/esim9")
+     */
+
+    public function kuntopisteet(){
+
+        $holkkapts = 4;
+        $hiihtopts = 2;
+        $kavelypts = 1;
+
+
+
+        $nimi = 'Arvid Lee';
+
+
+        //taulukko
+        $liikunta = [
+            'Holkka' => 10,
+            'Hiihto' => 5,
+            'Kävely' => 20,
+        ];
+
+        //laskurit
+
+            //pisteet liikutataulukko * pistemäärä
+        $pisteetholkka = $liikunta['Holkka'] * $holkkapts;
+        $pisteethiihto = $liikunta['Hiihto'] * $hiihtopts;
+        $pisteetkavely = $liikunta['Kävely'] * $kavelypts;
+
+            //Yhteenlasketut pisteet
+        $pisteetyhteensa = $pisteetholkka + $pisteethiihto + $pisteetkavely;
+
+        //tulostin
+        return $this->render('esimerkit/kuntopisteet.html.twig',[
+            'nimi' => $nimi,
+            'holkka' => $liikunta['Holkka'],
+            'holkkapisteet' => $pisteetholkka,
+            'hiihto' => $liikunta['Hiihto'],
+            'hiihtopisteet' => $pisteethiihto,
+            'kavely' => $liikunta['Kävely'],
+            'kavelypisteet' => $pisteetkavely,
+            'pisteet' => $pisteetyhteensa,
+        ]);
+
+
+    }
 
 }
 

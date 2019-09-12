@@ -1,0 +1,21 @@
+<h1> {{ otsikko }} </h1>
+
+<div>
+    <p>
+    uusi control-päivitys tekee pelistä vakaamman- playstation 4 pelaajat voivat ladata sen jo nyt.
+    </p>
+    <p>
+    apple julkisti arcade-pelipalvelun hinnan ja julkaisu päivämäärän.
+    </p>
+    <p>
+    playstation storen viikon uutuudet:hokiii, räiskintää ja himmeetä mättöä.
+    </p>
+
+    <h2>Kommentit ({{ kommentit|length }})</h2>
+
+    <ul>
+        {% for kommentti in kommentit %}
+            <li>{{ kommentti }} </li>
+        {% endfor %}
+
+</div>
