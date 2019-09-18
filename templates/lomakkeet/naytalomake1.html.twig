@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}Form harjoitus - naytalomake.twig{% endblock %}
+
+{% block body %}
+
+    <div>
+        <h2 class="text-center">Formista kuvakortiksi</h2>
+        <div class="card" style="width:400px">
+            <img class="card-img-top" src="../img/img_avatar1.png" alt="Card image" style="width:100%">
+            <div class="card-body">
+            <h4 class="card-title">{{ henkilo.etunimi }} {{ henkilo.sukunimi }}</h4>
+            <h6 class="card-subtitle mb-2 text-muted">{{ henkilo.email }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{ henkilo.kirjauspvm |date('D-M-Y: H:m:s') }}</h6>
+            <p class="card-text">Lorem ipsum on 1500-luvulta lähtien olemassa ollut teksti, jota käytetään usein täytetekstinä ulkoasun testaamiseen graafisessa suunnittelussa, kun oikeata ...</p>
+            <a href="{{ path('valmis') }}" class="btn btn-primary">Viimeistele</a>
+        </div>
+        
+    </div>
+    <p class="text-center">Kirjauspäivä: {{ henkilo.kirjauspvm |date('D-M-Y: H:m:s') }}</p>
+
+    <!--Etunimi: {{ henkilo.etunimi }} <br /> 
+    Sukunimi: {{ henkilo.sukunimi }}<br />
+    Kirjauspäivä: {{ henkilo.kirjauspvm |date('D-M-Y: H:m:s') }}-->
+{% endblock %}

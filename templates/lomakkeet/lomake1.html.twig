@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}Form harjoitus{% endblock %}
+
+{% block body %}
+    {{ form_start(form1, {'action': path('omalomake'), 'methot': 'POST', 'attr':{'class': 'form-signin'}}) }}
+        {{ form_widget(form1) }}
+    {{ form_end(form1) }}
+{% endblock %}
